@@ -1,4 +1,4 @@
-<%= form_for(@device) do |f| %>
+<%= form_for([@network, @device]) do |f| %>
 	<% if @device.errors.any? %>
 		<div class="alert alert-danger" role="alert">
 			<p><%= pluralize @device.errors.count, 'error' %> prohibited this device from being saved:</p>

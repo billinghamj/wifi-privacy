@@ -22,4 +22,8 @@
 
 <br>
 
-<%= link_to 'New Network', new_network_path, class: 'btn btn-default' %>
+<% if @device %>
+	<%= link_to 'New Network', new_device_network_path(@device), class: 'btn btn-default' %>
+<% else %>
+	<%= link_to 'New Network', new_network_path, class: 'btn btn-default' %>
+<% end %>
