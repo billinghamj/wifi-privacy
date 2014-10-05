@@ -19,7 +19,7 @@
 		<% @devices.each do |device| %>
 			<tr>
 				<td><%= link_to render_mac(device.mac), device %></td>
-				<td><%= link_to pluralize(device.networks.count, 'Network'), device_networks_path(device) %></td>
+				<td><%= link_to device.networks.count, device_networks_path(device) %></td>
 				<td><%= link_to 'Edit', edit_device_path(device) %></td>
 				<td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
