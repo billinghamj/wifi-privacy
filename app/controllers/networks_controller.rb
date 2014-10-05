@@ -1,4 +1,5 @@
 class NetworksController < ApplicationController
+	before_action :set_parent, only: [:index, :new, :create]
 	before_action :set_network, only: [:show, :edit, :update, :destroy]
 
 	def index
@@ -50,9 +51,19 @@ class NetworksController < ApplicationController
 		end
 	end
 
+	def self.get_obj(id)
+		Network.find id
+	end
+
 	private
 		def set_network
-			@network = Network.find params[:id]
+			@network = self.class.get_obj params[:id]
+		end
+
+		def set_parent
+			if params[:device_id]
+				@device = DevicesController.get_obj params[:device_id]
+			end
 		end
 
 		def network_params

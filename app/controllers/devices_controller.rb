@@ -1,4 +1,5 @@
 class DevicesController < ApplicationController
+	before_action :set_parent, only: [:index, :new, :create]
 	before_action :set_device, only: [:show, :edit, :update, :destroy]
 
 	def index
@@ -50,19 +51,25 @@ class DevicesController < ApplicationController
 		end
 	end
 
+	def self.get_obj(id)
+		mac_key = /\Amac-([0-9A-Fa-f]+)\Z/.match id
+
+		if mac_key
+			device = Device.find_by_mac mac_key[1]
+		end
+
+		device = Device.find id unless device
+	end
+
 	private
 		def set_device
-			mac_key = /\Amac-([0-9A-Fa-f]+)\Z/.match params[:id]
+			@device = self.class.get_obj params[:id]
+		end
 
-			if mac_key
-				@device = Device.find_by_mac mac_key[1]
+		def set_parent
+			if params[:network_id]
+				@network = NetworksController.get_obj params[:network_id]
 			end
-
-			unless @device
-				@device = Device.find params[:id]
-			end
-
-			@device
 		end
 
 		def device_params
