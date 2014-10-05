@@ -52,7 +52,17 @@ class DevicesController < ApplicationController
 
 	private
 		def set_device
-			@device = Device.find params[:id]
+			mac_key = /\Amac-([0-9A-Fa-f]+)\Z/.match params[:id]
+
+			if mac_key
+				@device = Device.find_by_mac mac_key[1]
+			end
+
+			unless @device
+				@device = Device.find params[:id]
+			end
+
+			@device
 		end
 
 		def device_params
