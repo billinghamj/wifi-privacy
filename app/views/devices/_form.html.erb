@@ -1,21 +1,21 @@
 <%= form_for(@device) do |f| %>
 	<% if @device.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@device.errors.count, "error") %> prohibited this device from being saved:</h2>
+		<div class="alert alert-danger" role="alert">
+			<p><%= pluralize @device.errors.count, 'error' %> prohibited this device from being saved:</p>
 
 			<ul>
-			<% @device.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
-			<% end %>
+				<% @device.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
 			</ul>
 		</div>
 	<% end %>
 
-	<div class="field">
-		<%= f.label :mac %><br>
-		<%= f.text_field :mac %>
+	<div class="form-group">
+		<%= f.label :mac %>
+		<%= f.text_field :mac, class: 'form-control' %>
 	</div>
-	<div class="actions">
-		<%= f.submit %>
-	</div>
+
+	<%= f.submit class: 'btn btn-primary' %>
+	<%= link_to 'Cancel', @device, class: 'btn btn-link' %>
 <% end %>
