@@ -2,7 +2,7 @@
 
 <p>
 	<strong>MAC:</strong>
-	<%= @device.mac %>
+	<%= render_mac(@device.mac) %>
 </p>
 
 <%= link_to 'Edit', edit_device_path(@device), class: 'btn btn-default' %>

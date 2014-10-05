@@ -11,7 +11,7 @@
 	<tbody>
 		<% @devices.each do |device| %>
 			<tr>
-				<td><%= device.mac %></td>
+				<td><%= render_mac(device.mac) %></td>
 				<td><%= link_to 'Show', device %></td>
 				<td><%= link_to 'Edit', edit_device_path(device) %></td>
 				<td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
