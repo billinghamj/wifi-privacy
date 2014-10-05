@@ -1,4 +1,10 @@
-<h1>Listing networks</h1>
+<h1>
+	Listing networks
+
+	<% if @device %>
+		for <%= render_mac(@device.mac) %>
+	<% end %>
+</h1>
 
 <table class="table">
 	<thead>
