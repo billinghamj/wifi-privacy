@@ -56,10 +56,12 @@ class DevicesController < ApplicationController
 	end
 
 	def self.get_obj(id)
-		mac_key = /\Amac-([0-9A-Fa-f]+)\Z/.match id
+		regex = /\Amac-([0-9A-F]{12})\Z/i
+		mac = regex.match id
 
-		if mac_key
-			device = Device.find_by_mac mac_key[1]
+		if mac
+			mac = mac[1]
+			device = Device.find_by_mac mac
 		end
 
 		device = Device.find id unless device
