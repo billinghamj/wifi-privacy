@@ -62,6 +62,10 @@ class DevicesController < ApplicationController
 		if mac
 			mac = mac[1]
 			device = Device.find_by_mac mac
+
+			unless device
+				device = Device.create mac: mac
+			end
 		end
 
 		device = Device.find id unless device
