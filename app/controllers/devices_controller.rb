@@ -3,7 +3,11 @@ class DevicesController < ApplicationController
 	before_action :set_device, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@devices = Device.all
+		if @network
+			@devices = @network.devices
+		else
+			@devices = Device.all
+		end
 	end
 
 	def show

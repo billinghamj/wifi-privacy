@@ -3,7 +3,11 @@ class NetworksController < ApplicationController
 	before_action :set_network, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@networks = Network.all
+		if @device
+			@networks = @device.networks
+		else
+			@networks = Network.all
+		end
 	end
 
 	def show
