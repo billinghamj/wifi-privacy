@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
+ruby '2.1.2'
 
 # core
 gem 'rails', '4.1.6'
 gem 'unicorn'
+gem 'rails_12factor', group: :production
 gem 'spring', group: :development
 gem 'pg'
 
