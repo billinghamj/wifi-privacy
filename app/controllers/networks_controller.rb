@@ -21,7 +21,19 @@ class NetworksController < ApplicationController
 	end
 
 	def create
-		@network = Network.new network_params
+		if @device
+			@network = Network.find_by_name params[:name]
+
+			unless @network
+				@network = Network.create network_params
+			end
+
+			Probe.create network: @network, device: @device
+		end
+
+		unless @network
+			@network = Network.new network_params
+		end
 
 		respond_to do |format|
 			if @network.save
