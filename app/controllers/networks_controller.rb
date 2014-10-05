@@ -22,7 +22,7 @@ class NetworksController < ApplicationController
 
 	def create
 		if @device
-			@network = Network.find_by_name params[:name]
+			@network = Network.find_by_name network_params[:name]
 
 			unless @network
 				@network = Network.create network_params
