@@ -59,6 +59,8 @@ class DevicesController < ApplicationController
 		end
 
 		device = Device.find id unless device
+
+		device
 	end
 
 	private
