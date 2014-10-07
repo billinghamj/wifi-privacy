@@ -28,7 +28,7 @@ class NetworksController < ApplicationController
 				@network = Network.create network_params
 			end
 
-			Probe.create network: @network, device: @device
+			Probe.create network: @network, device: @device, location: network_params[:location]
 		end
 
 		unless @network
@@ -83,6 +83,6 @@ class NetworksController < ApplicationController
 		end
 
 		def network_params
-			params.require(:network).permit(:name, :location)
+			params.require(:network).permit(:name)
 		end
 end
