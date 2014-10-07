@@ -28,7 +28,17 @@ class NetworksController < ApplicationController
 				@network = Network.create network_params
 			end
 
-			Probe.create network: @network, device: @device, location: network_params[:location]
+			probe = {
+				network: @network,
+				device: @device,
+				location: network_params[:location]
+			}
+
+			logger.info params
+			logger.info network_params
+			logger.info probe
+
+			Probe.create probe
 		end
 
 		unless @network
