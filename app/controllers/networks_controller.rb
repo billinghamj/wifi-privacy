@@ -83,6 +83,6 @@ class NetworksController < ApplicationController
 		end
 
 		def network_params
-			params.require(:network).permit(:name)
+			params.require(:network).permit(:name, :location)
 		end
 end
